@@ -1,12 +1,12 @@
-import './App.css'
+import React from 'react'
+import Signup from './Auth/Signup'
 
-function App() {
-
+export default function App() {
   return (
-    <div className='bg-red-50'>
-      Home Page
-    </div>
+    <>
+      <div className='font-poppins'>
+        <Signup/>
+      </div>
+    </>
   )
 }
-
-export default App
