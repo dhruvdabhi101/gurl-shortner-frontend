@@ -1,0 +1,19 @@
+[
+    {
+      "title": "Username",
+      "type": "text",
+      "name": "username",
+      "condition": {
+        "required": "Username is required"
+      }
+    },
+    {
+      "title": "Password",
+      "type": "password",
+      "name": "password",
+      "condition": {
+        "required": "Password is required"
+      }
+    }
+  ]
+  
