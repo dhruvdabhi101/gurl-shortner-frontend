@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import formFields from './signup.json'; // Import JSON file
+import formFields from './signup.json'; 
 
 export default function Signup() {
   const { register, handleSubmit, formState: { errors }, watch } = useForm();
@@ -29,6 +29,39 @@ export default function Signup() {
             {errors[field.name] && <span className='text-red-600'>{errors[field.name].message}</span>}
           </div>
         ))}
+
+        {/* Password */}
+        <div className='flex flex-col gap-2'>
+          <label className='font-medium text-slate-200'>Password: </label>
+          <input
+            type='password'
+            name='password'
+            {...register('password', {
+              required: 'Password is required',
+              pattern: {
+                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+                message: 'Password must contain at least one lowercase letter, one uppercase letter, one digit, and be at least 8 characters long'
+              }
+            })}
+            className='text-black border-none focus:border-transparent focus:outline-none px-5 py-1.5 rounded-xl w-80'
+          />
+          {errors.password && <span className='text-red-600 w-72 text-start'>{errors.password.message}</span>}
+        </div>
+
+        {/* Confirm Password */}
+        <div className='flex flex-col gap-2'>
+          <label className='font-medium text-slate-200'>Confirm password: </label>
+          <input
+            type='password'
+            name='confirmPassword'
+            {...register('confirmPassword', {
+              required: 'Confirm password is required',
+              validate: value => value === password || 'Passwords do not match'
+            })}
+            className='text-black border-none focus:border-transparent focus:outline-none px-5 py-1.5 rounded-xl w-80'
+          />
+          {errors.confirmPassword && <span className='text-red-600'>{errors.confirmPassword.message}</span>}
+        </div>
 
         {/* button */}
         <div className='text-center self-center px-5 py-3 rounded-xl bg-white text-black w-52 border-[1px] border-white hover:bg-transparent hover:text-white hover:transition-all ease-in-out duration-200 cursor-pointer'>
