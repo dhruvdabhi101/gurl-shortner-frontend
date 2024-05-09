@@ -22,27 +22,5 @@
           "message": "Username must be 6 characters long"
         }
       }
-    },
-    {
-      "title": "Password",
-      "type": "password",
-      "name": "password",
-      "condition": {
-        "required": "Password is required",
-        "minLength": {
-          "value": 8,
-          "message": "Password must be 8 characters long"
-        }
-      }
-    },
-    {
-      "title": "Confirm password",
-      "type": "password",
-      "name": "confirmPassword",
-      "condition": {
-        "required": "Confirm password is required",
-        "validate": "value => value === password || 'Password do not match'"
-      }
     }
-  ]
-  
+]  
