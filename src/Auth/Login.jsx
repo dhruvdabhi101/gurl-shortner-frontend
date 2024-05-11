@@ -1,12 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import formFields from './login.json'; // Import the JSON file
+import formFields from './login.json';
+import axios from 'axios';
 
 export default function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = async data => {
+    const res = await axios.post("http://127.0.0.1:3000/user/signin", data)
+    if(res.status === 200) {
+      console.log(res.data);
+    }
+  };
 
   return (
     <div className='text-white flex flex-col justify-center items-center w-full h-screen gap-10'>
