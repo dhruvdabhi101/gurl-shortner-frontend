@@ -2,12 +2,23 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import formFields from './signup.json'; 
+import axios from 'axios';
 
 export default function Signup() {
   const { register, handleSubmit, formState: { errors }, watch } = useForm();
   const password = watch('password');
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = async data => {
+    const formData = {
+      username: data.username,
+      password: data.password,
+      email: data.email
+    }
+    const res = await axios.post("http://127.0.0.1:3000/user/signup", formData)
+    if(res.status === 200) {
+      console.log(res.data);
+    }
+  };
 
   return (
     <div className='text-white flex flex-col justify-center items-center w-full h-screen gap-10'>
